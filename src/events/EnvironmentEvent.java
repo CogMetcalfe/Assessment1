@@ -1,18 +1,19 @@
 package events;
 
-import maths.RandomGod;
-import maths.Vector;
+import maths.*;
+import textAdventureGame.*;
 
 public class EnvironmentEvent extends LocationEvent{
 	
 	String detail;
 	
-	public EnvironmentEvent() {
+	public EnvironmentEvent(Vector position) {
+		this.position = position;
 		generateEvent();
 	}
 
 	private void generateEvent(){
-		generateEvent(RandomGod.nextInt(6));
+		generateEvent(RandomGod.nextInt(7));
 	}
 	private void generateEvent(int type) {
 		switch(type) {
@@ -36,12 +37,16 @@ public class EnvironmentEvent extends LocationEvent{
 			return;
 		case 4: 
 			detail="The swamp gets shallower, and more wild plants thrive."
-					+ "\nYou take a moment to dry out your boots and have a snack";
+					+ "\nYou take a moment to dry out your boots and have a snack.";
 			return;
 		case 5: 
 			detail="As you are wandering through the swamp, you suddenly feel an overwhelming sense of dread."
 					+ "\nPanic sets in as you spin around to check behind you."
 					+ "\nYou see nothing but the path you came down.";
+			return;
+		case 6: 
+			detail="You come to the bank of a wide river."
+					+ "\nA creaky, rotten wooden plank bridge stretches across.";
 			return;
 		}
 		detail = "ERROR";
@@ -49,7 +54,7 @@ public class EnvironmentEvent extends LocationEvent{
 	
 	
 	@Override
-	public void runEvent() {
+	public void runEvent(Player player) {
 		System.out.println(detail);
 	}
 

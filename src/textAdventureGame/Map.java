@@ -18,7 +18,7 @@ public class Map {
 	private Vector treasurePos;
 	private ArrayList<Vector> goblinPosArray;
 	//private Random rand;
-	Map(){
+	public Map(){
 		//set seed ??
 //		rand.setSeed(arg0);
 		//rand = new Random();
@@ -27,10 +27,12 @@ public class Map {
 		treasurePos = treasurePos.rotate(RandomGod.nextFloat());
 		generateGoblins();
 	}
+	
 	public Player getPlayer() {
 		return player;
 	}
-	void generateGoblins() {
+	
+	private void generateGoblins() {
 		goblinPosArray = new ArrayList<Vector>();
 		Vector playerToTreasure = treasurePos.sub(player.getPosition());
 		Vector midPoint = player.getPosition().plus(playerToTreasure.multiply(0.5));
@@ -70,26 +72,24 @@ public class Map {
 		}
 	}
 	
-	private void generateCurrentLocation() {
-		
-	}
 	
-	double goblinDistance(Vector v) {
+	private double goblinDistance(Vector v) {
 		double closest=Double.MAX_VALUE;
 		for(Vector g:goblinPosArray) {
 			closest = Math.min(closest, v.dist(g));
 		}
 		return closest;
 	}
-	double goblinDistancePlayer() {
+	
+	private double goblinDistancePlayer() {
 		return goblinDistance(player.getPosition());
 	}
 
-	boolean killedByGoblin() {
+	public boolean killedByGoblin() {
 		return !alive;
 	}
 	
-	double fuzzyCompass() {
+	public double fuzzyCompass() {
 		//adds goblin jam to the compass
 		if(goblinDistancePlayer()==1) {
 			return Double.MAX_VALUE*(RandomGod.nextInt(2)*2-1);
@@ -99,7 +99,8 @@ public class Map {
 			return getDistanceToTreasure();
 		}
 	}
-	Vector getClosestGoblin() {
+	
+	private Vector getClosestGoblin() {
 		double closest=Double.MAX_VALUE;
 		Vector goblin=new Vector(-1,-1);
 		for(Vector g:goblinPosArray) {
@@ -109,16 +110,19 @@ public class Map {
 		return goblin;
 	}
 	
-	Vector getVectorToTreasure() {
+	private Vector getVectorToTreasure() {
 		return treasurePos.sub(player.getPosition());
 	}
-	double getDistanceToTreasure() {
+	
+	public double getDistanceToTreasure() {
 		return player.getPosition().dist(treasurePos);
 	}
-	boolean foundTreasure() {
+	
+	public boolean foundTreasure() {
 		return getDistanceToTreasure()==0;
 	}
-	void movePlayer(Vector displacement) {
+	
+	public void movePlayer(Vector displacement) {
 		player.movePlayer(displacement);
 		//goblin encounter
 		if(goblinDistancePlayer()==0) {
@@ -126,23 +130,28 @@ public class Map {
 			killedGoblinFlag=true;
 		}
 	}
-	boolean goblinSlain() {
+	
+	public boolean goblinSlain() {
 		if(killedGoblinFlag) {
 			killedGoblinFlag = false;
 			return true;
 		}
 		return false;
 	}
-	void goNorth() {
+	
+	public void goNorth() {
 		movePlayer(new Vector(0,1));
 	}
-	void goSouth() {
+	
+	public void goSouth() {
 		movePlayer(new Vector(0,-1));
 	}
-	void goWest() {
+	
+	public void goWest() {
 		movePlayer(new Vector(-1,0));
 	}
-	void goEast() {
+	
+	public void goEast() {
 		movePlayer(new Vector(1,0));
 	}
 }

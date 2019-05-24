@@ -1,6 +1,7 @@
 package events;
 import java.util.ArrayList;
 
+import maths.RandomGod;
 import maths.Vector;
 
 public class WorldEvents {
@@ -10,21 +11,27 @@ public class WorldEvents {
 		eventArray = new ArrayList<LocationEvent>();
 	}
 	
-	public void addLocation(LocationEvent newLoc) {
+	public LocationEvent addLocation(LocationEvent newLoc) {
 		eventArray.add(newLoc);
+		return newLoc;
 	}
 	
 	public LocationEvent findOrCreateLocationEvent(Vector position) {
+		
 		LocationEvent searchResult = findLocation(position);
 		if(searchResult!=null) {
 			return searchResult;
 		}else {
-			return generateEvent(position);
+			return addLocation(generateEvent(position));
 		}
 	}
 	
 	private LocationEvent generateEvent(Vector position) {
-		return new EnvironmentEvent();
+		if(RandomGod.nextInt(10)==0) {
+			return new CombatEvent(position);
+		}else {
+			return new EnvironmentEvent(position);
+		}
 	}
 
 	public LocationEvent findLocation(Vector position) {

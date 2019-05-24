@@ -1,11 +1,12 @@
 package events;
 
 import maths.Vector;
+import textAdventureGame.Player;
 
 public abstract class LocationEvent {
-	private Vector position;
+	protected Vector position;
 	public Vector getPosition() {
 		return position.copy();
 	}
-	public abstract void runEvent();
+	public abstract void runEvent(Player player);
 }
