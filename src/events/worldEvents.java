@@ -29,7 +29,10 @@ public class WorldEvents {
 	private LocationEvent generateEvent(Vector position) {
 		if(RandomGod.nextInt(10)==0) {
 			return new CombatEvent(position);
+		}else if (RandomGod.nextInt(30)==0){
+			return new InteractiveEvent(position);
 		}else {
+			
 			return new EnvironmentEvent(position);
 		}
 	}
@@ -58,6 +61,8 @@ public class WorldEvents {
 //					i=Math.max(i, 0);
 //				}
 //			}
+//			//I wasn't lying, it's poorly written, why are you reading this?
+//			//Why don't you check out the nice encounter event system? #LocationEvent
 //			switch(position.compareTo(eventArray.get(i).position)) {
 //			case -1:
 //				i-=step;

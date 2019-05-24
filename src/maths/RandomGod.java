@@ -2,6 +2,7 @@ package maths;
 
 import java.util.Random;
 
+//Whenever someone gets mad at the RNG god, this is who they're referring to.
 public class RandomGod {
 	private static Random rand = new Random();
 	public static int nextInt(int arg0) {

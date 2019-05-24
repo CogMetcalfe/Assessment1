@@ -21,7 +21,6 @@ public class CompassGame {
 				"It has hands like a watch, but the hands don't seem to tell time.\n");
 		printDial();
 		boolean running=true;
-		consoleInput = new Scanner(System.in);
 		while(running) {
 			input();
 			//worldMap.getPlayer().stats.getDexterity()
@@ -41,9 +40,6 @@ public class CompassGame {
 	private void consoleOut(String text) {
 		System.out.println(text);
 	}
-	private void printDirection() {
-		
-	}
 	private void printDial() {
 		consoleOut("The dial reads: \'" + worldMap.compassDirection() + "\'");
 	}
@@ -51,7 +47,7 @@ public class CompassGame {
 		eventSystem.findOrCreateLocationEvent(worldMap.getPlayer().getPosition()).runEvent(worldMap.getPlayer());
 	}
 	private boolean input() {
-		String input = consoleInput.nextLine();
+		String input = GlobalScanner.scanGlobal.nextLine();
 		String command = input.toLowerCase();
 		switch(command) {
 			case "n":

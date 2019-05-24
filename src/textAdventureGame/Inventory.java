@@ -15,4 +15,8 @@ public class Inventory {
 		}
 		return false;
 	}
+	public void addItem(Item newItem) {
+		itemArray.add(newItem);
+	}
+
 }

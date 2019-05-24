@@ -1,14 +1,12 @@
 package textAdventureGame;
 
-import java.util.ArrayList;
-
 import maths.Vector;
 
 public class Player {
 	private Vector position;
 	public Status stats;
 	private int gold;
-	Inventory inv;
+	public Inventory inv;
 	Player(){
 		position = new Vector();
 		inv = new Inventory();

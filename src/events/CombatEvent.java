@@ -35,12 +35,21 @@ public class CombatEvent extends LocationEvent{
 				+ "\nUpon approach, you see a variety of green creatures dancing around the fire, clubs in hands, singing and drinking while roasting a boar."
 				+ "\nDo you wish to approach the goblin camp?[Y/N]");
 		if(YesNoResponse.getResponse()) {
-			//Could check strength stats and roll chance to survive.
-			System.out.println("You walk up to the goblin camp and draw your..."
-					+ "\n...sword that you don't have. Good job."
-					+ "\nThe goblins bash in your skull and you die."
-					+ "\nThey add your corpse to the roast.");
-			player.takeDamage(Integer.MAX_VALUE);
+			if(player.inv.contains("sword")) {
+				int goldGained = 5+RandomGod.nextInt(5);
+				System.out.println("You walk up to the goblin camp and draw your...\r\n" + 
+						"... almighty glass sword. You slice and dice your way through the \r\n" + 
+						"goblin horde with swordsmanship skill you didn't even know you had.\r\n" + 
+						"They're all dead. You loot their corpses and find some gold(" + goldGained + ").");
+				player.addGold(goldGained);
+			}else {
+			
+				System.out.println("You walk up to the goblin camp and draw your..."
+						+ "\n...sword that you don't have. Good job."
+						+ "\nThe goblins bash in your skull and you die."
+						+ "\nThey add your corpse to the roast.");
+				player.takeDamage(Integer.MAX_VALUE);
+			}
 		}
 	}
 	

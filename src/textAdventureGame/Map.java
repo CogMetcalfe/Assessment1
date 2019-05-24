@@ -1,7 +1,5 @@
 package textAdventureGame;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Random;
+
 
 import maths.RandomGod;
 import maths.Vector;
@@ -9,11 +7,11 @@ import maths.Vector;
 public class Map {
 	//final int goblinResetDistance=5;
 	//final int goblinFuzzyModifier=3;
-	final private double goblinDensity = 0.05;
-	final private double chanceToSlayGoblin = 0.5;
-	
-	private boolean alive;
-	private boolean killedGoblinFlag;
+//	final private double goblinDensity = 0.05;
+//	final private double chanceToSlayGoblin = 0.5;
+//	
+//	private boolean alive;
+//	private boolean killedGoblinFlag;
 	private Player player;
 	private Vector treasurePos;
 //	private ArrayList<Vector> goblinPosArray;
@@ -48,6 +46,7 @@ public class Map {
 //		int area = (maxX-minX)*(maxY-minY);
 //
 //		//for a certain number of times, and stop if the goblin density gets high enough
+//		//Wait, you actually read this? It's all commented. There's nothing here, Jim.
 //		for(int i=0;i<goblinDensity*area*2&&!(goblinPosArray.size() <goblinDensity*area);i++) {
 //			int x,y;
 //			x = minX + RandomGod.nextInt(maxX-minX);

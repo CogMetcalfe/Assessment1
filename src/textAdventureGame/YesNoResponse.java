@@ -4,9 +4,8 @@ import java.util.Scanner;
 
 public class YesNoResponse {
 	public static boolean getResponse() {
-		Scanner s = new Scanner(System.in);
 		while(true) {
-			String command = s.nextLine();
+			String command = GlobalScanner.scanGlobal.nextLine();
 			switch(command.toLowerCase()) {
 			case "n":
 			case "no":
