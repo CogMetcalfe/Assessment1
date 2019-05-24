@@ -67,6 +67,15 @@ public class Vector {
 		}
 	}
 	
+	public double getAngle() {
+		/**Angle is clockwise radians from +y axis*/
+		double ang= Math.atan2(x, y);
+		while(ang<0) {
+			ang+=2*Math.PI;
+		}
+		return ang;
+	}
+	
 	public Vector copy() {
 		return new Vector(x,y);
 	}

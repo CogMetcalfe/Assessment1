@@ -45,7 +45,7 @@ public class CompassGame {
 		
 	}
 	private void printDial() {
-		consoleOut("The dial reads: \'" + worldMap.fuzzyCompass() + "\'");
+		consoleOut("The dial reads: \'" + worldMap.compassDirection() + "\'");
 	}
 	private void runEvent() {
 		eventSystem.findOrCreateLocationEvent(worldMap.getPlayer().getPosition()).runEvent(worldMap.getPlayer());
