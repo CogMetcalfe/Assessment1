@@ -16,7 +16,7 @@ public class CompassGame {
 		boolean running=true;
 		consoleInput = new Scanner(System.in);
 		while(running) {
-			consoleOut("The dial reads: \'" + worldMap.getDistanceToTreasure() + "\'");
+			consoleOut("The dial reads: \'" + worldMap.fuzzyCompass() + "\'");
 			while(!input()) {}
 			if(worldMap.getDistanceToTreasure()==0) {
 				//Win condition met
@@ -55,4 +55,5 @@ public class CompassGame {
 		}
 		return true;
 	}
+	
 }
