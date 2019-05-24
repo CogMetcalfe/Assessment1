@@ -2,6 +2,8 @@ package textAdventureGame;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
+
+import maths.RandomGod;
 import maths.Vector;
 
 public class Map {
@@ -15,15 +17,18 @@ public class Map {
 	private Player player;
 	private Vector treasurePos;
 	private ArrayList<Vector> goblinPosArray;
-	private Random rand;
+	//private Random rand;
 	Map(){
 		//set seed ??
 //		rand.setSeed(arg0);
-		rand = new Random();
+		//rand = new Random();
 		player = new Player();
-		treasurePos = new Vector(rand.nextInt(5)+5,0);
-		treasurePos = treasurePos.rotate(rand.nextFloat());
+		treasurePos = new Vector(RandomGod.nextInt(5)+5,0);
+		treasurePos = treasurePos.rotate(RandomGod.nextFloat());
 		generateGoblins();
+	}
+	public Player getPlayer() {
+		return player;
 	}
 	void generateGoblins() {
 		goblinPosArray = new ArrayList<Vector>();
@@ -43,8 +48,8 @@ public class Map {
 		//for a certain number of times, and stop if the goblin density gets high enough
 		for(int i=0;i<goblinDensity*area*2&&!(goblinPosArray.size() <goblinDensity*area);i++) {
 			int x,y;
-			x = minX + rand.nextInt(maxX-minX);
-			y = minY + rand.nextInt(maxY-minY);
+			x = minX + RandomGod.nextInt(maxX-minX);
+			y = minY + RandomGod.nextInt(maxY-minY);
 			Vector newGoblin = new Vector(x,y);
 			
 			//if too close to player
@@ -87,9 +92,9 @@ public class Map {
 	double fuzzyCompass() {
 		//adds goblin jam to the compass
 		if(goblinDistancePlayer()==1) {
-			return Double.MAX_VALUE*(rand.nextInt(2)*2-1);
+			return Double.MAX_VALUE*(RandomGod.nextInt(2)*2-1);
 		}else if(goblinDistancePlayer()<=3) {
-			return getDistanceToTreasure()+(((float)rand.nextInt(7)+3)*(rand.nextInt(2)*2-1));
+			return getDistanceToTreasure()+(((float)RandomGod.nextInt(7)+3)*(RandomGod.nextInt(2)*2-1));
 		}else {
 			return getDistanceToTreasure();
 		}

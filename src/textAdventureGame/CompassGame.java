@@ -1,11 +1,14 @@
 package textAdventureGame;
 import java.util.Scanner;
+import events.WorldEvents;
 
 public class CompassGame {
+	private WorldEvents eventSystem;
 	private Map worldMap;
 	private Scanner consoleInput;
 	public CompassGame(){
 		worldMap = new Map();
+		eventSystem = new WorldEvents();
 	}
 	public void run() {
 		consoleOut("Grey foggy clouds float oppressively close to you,\r\n" + 
@@ -17,6 +20,7 @@ public class CompassGame {
 		boolean running=true;
 		consoleInput = new Scanner(System.in);
 		while(running) {
+			eventSystem.findOrCreateLocationEvent(worldMap.getPlayer().getPosition()).runEvent();
 			consoleOut("The dial reads: \'" + worldMap.fuzzyCompass() + "\'");
 			while(!input()) {}
 			if(worldMap.getDistanceToTreasure()==0) {

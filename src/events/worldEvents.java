@@ -3,8 +3,12 @@ import java.util.ArrayList;
 
 import maths.Vector;
 
-public class worldEvents {
+public class WorldEvents {
 	ArrayList<LocationEvent> eventArray;
+	
+	public WorldEvents(){
+		eventArray = new ArrayList<LocationEvent>();
+	}
 	
 	public void addLocation(LocationEvent newLoc) {
 		eventArray.add(newLoc);

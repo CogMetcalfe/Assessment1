@@ -3,8 +3,11 @@ package maths;
 import java.util.Random;
 
 public class RandomGod {
-	static Random rand = new Random();
-	static int randInt(int arg0) {
+	private static Random rand = new Random();
+	public static int nextInt(int arg0) {
 		return rand.nextInt(arg0);
+	}
+	public static float nextFloat(){
+		return rand.nextFloat();
 	}
 }
