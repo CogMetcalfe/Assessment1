@@ -6,10 +6,12 @@ public class EnvironmentEvent extends LocationEvent{
 	
 	
 	public EnvironmentEvent() {
-		generateEvent();
+		generateEvent(0);
 	}
 	
-	void generateEvent(int type);
+	void generateEvent(int type) {
+		
+	}
 	
 	
 	@Override
