@@ -10,4 +10,7 @@ public class RandomGod {
 	public static float nextFloat(){
 		return rand.nextFloat();
 	}
+	public static boolean nextBoolean(){
+		return rand.nextBoolean();
+	}
 }

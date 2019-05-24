@@ -41,6 +41,9 @@ public class CompassGame {
 	private void consoleOut(String text) {
 		System.out.println(text);
 	}
+	private void printDirection() {
+		
+	}
 	private void printDial() {
 		consoleOut("The dial reads: \'" + worldMap.fuzzyCompass() + "\'");
 	}

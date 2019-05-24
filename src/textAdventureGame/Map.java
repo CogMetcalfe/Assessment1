@@ -89,6 +89,8 @@ public class Map {
 		return !alive;
 	}
 	
+	public 
+	
 	public double fuzzyCompass() {
 		//adds goblin jam to the compass
 		if(goblinDistancePlayer()==1) {
