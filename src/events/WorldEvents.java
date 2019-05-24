@@ -29,7 +29,7 @@ public class WorldEvents {
 	private LocationEvent generateEvent(Vector position) {
 		if(RandomGod.nextInt(10)==0) {
 			return new CombatEvent(position);
-		}else if (RandomGod.nextInt(30)==0){
+		}else if (RandomGod.nextInt(20)==0){
 			return new InteractiveEvent(position);
 		}else {
 			
