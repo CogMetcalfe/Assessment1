@@ -1,3 +1,4 @@
+package maths;
 
 public class Vector {
 	public int x, y;
@@ -38,6 +39,24 @@ public class Vector {
 	}
 	public boolean equals(Vector v2) {
 		return this.x == v2.x && this.y == v2.y;
+	}
+	public int compareTo(Vector v2) {
+		if(this.x<v2.x) {
+			return -1;
+		}else if(this.x>v2.x) {
+			return 1;
+		}else {
+			if(this.y<v2.y) {
+				return -1;
+			}else if(this.y>v2.y) {
+				return 1;
+			}else {
+				return 0;
+			}
+		}
+	}
+	public Vector copy() {
+		return new Vector(x,y);
 	}
 }
 

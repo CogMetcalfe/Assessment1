@@ -1,31 +1,34 @@
+package textAdventureGame;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
+import maths.Vector;
+
 public class Map {
 	//final int goblinResetDistance=5;
 	//final int goblinFuzzyModifier=3;
-	final double goblinDensity = 0.05;
-	final double chanceToSlayGoblin = 0.5;
+	final private double goblinDensity = 0.05;
+	final private double chanceToSlayGoblin = 0.5;
 	
-	boolean alive;
-	boolean killedGoblinFlag;
-	Vector playerPos;
-	Vector treasurePos;
-	ArrayList<Vector> goblinPosArray;
-	Random rand;
+	private boolean alive;
+	private boolean killedGoblinFlag;
+	private Player player;
+	private Vector treasurePos;
+	private ArrayList<Vector> goblinPosArray;
+	private Random rand;
 	Map(){
 		//set seed ??
 //		rand.setSeed(arg0);
 		rand = new Random();
-		playerPos = new Vector();
+		player = new Player();
 		treasurePos = new Vector(rand.nextInt(5)+5,0);
 		treasurePos = treasurePos.rotate(rand.nextFloat());
 		generateGoblins();
 	}
 	void generateGoblins() {
 		goblinPosArray = new ArrayList<Vector>();
-		Vector playerToTreasure = treasurePos.sub(playerPos);
-		Vector midPoint = playerPos.plus(playerToTreasure.multiply(0.5));
+		Vector playerToTreasure = treasurePos.sub(player.getPosition());
+		Vector midPoint = player.getPosition().plus(playerToTreasure.multiply(0.5));
 		playerToTreasure = playerToTreasure.plus(new Vector(10,10));
 		int maxX, minX, maxY, minY;
 		
@@ -45,7 +48,7 @@ public class Map {
 			Vector newGoblin = new Vector(x,y);
 			
 			//if too close to player
-			if(newGoblin.dist(playerPos)<4) {
+			if(newGoblin.dist(player.getPosition())<4) {
 				continue;
 			}
 			
@@ -74,7 +77,7 @@ public class Map {
 		return closest;
 	}
 	double goblinDistancePlayer() {
-		return goblinDistance(playerPos);
+		return goblinDistance(player.getPosition());
 	}
 
 	boolean killedByGoblin() {
@@ -95,23 +98,23 @@ public class Map {
 		double closest=Double.MAX_VALUE;
 		Vector goblin=new Vector(-1,-1);
 		for(Vector g:goblinPosArray) {
-			closest = Math.min(closest, playerPos.dist(g));
+			closest = Math.min(closest, player.getPosition().dist(g));
 			goblin = g;
 		}
 		return goblin;
 	}
 	
 	Vector getVectorToTreasure() {
-		return treasurePos.sub(playerPos);
+		return treasurePos.sub(player.getPosition());
 	}
 	double getDistanceToTreasure() {
-		return playerPos.dist(treasurePos);
+		return player.getPosition().dist(treasurePos);
 	}
 	boolean foundTreasure() {
 		return getDistanceToTreasure()==0;
 	}
 	void movePlayer(Vector displacement) {
-		playerPos = playerPos.plus(displacement);
+		player.movePlayer(displacement);
 		//goblin encounter
 		if(goblinDistancePlayer()==0) {
 			goblinPosArray.remove(getClosestGoblin());

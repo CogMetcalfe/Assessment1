@@ -1,3 +1,4 @@
+package textAdventureGame;
 import java.util.Scanner;
 
 public class CompassGame {
